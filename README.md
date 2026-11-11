@@ -28,17 +28,6 @@ Se han integrado habilidades nativas de búsqueda para portales y bolsas de empl
 
 Conserva todo el potente flujo de trabajo automatizado de IA (`/scrape`, `/apply`, `/upskill`, `/interview`) adaptado para encontrar y postularse a oportunidades desde Cuba.
 
-<p align="center">
-  <i>¿Esto te ahorró un domingo escribiendo cartas de presentación? Considera invitarme a un café.<br>
-  ¿Te consiguió el trabajo? Tal vez dos.</i> ☕
-</p>
-
-<p align="center">
-  <a href="https://ko-fi.com/madslorentzen">
-    <img src="https://storage.ko-fi.com/cdn/kofi3.png?v=6" alt="Invítame a un café en ko-fi.com" height="40">
-  </a>
-</p>
-
 ## ¿Qué es esto?
 
 Un flujo de trabajo estructurado que convierte a Claude Code o OpenCode en un asistente completo de solicitudes de empleo. El flujo de trabajo principal (auto-perfilado, evaluación de compatibilidad y la tubería de redactor-revisor) es **independiente del idioma y del país**. Las habilidades de búsqueda en portales de empleo se adaptan a tus mercados locales o herramientas globales, permitiendo intercambiar fácilmente las fuentes de búsqueda.
