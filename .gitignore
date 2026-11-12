@@ -95,3 +95,6 @@ upskill/*.md
 
 # Brainstorm mockups (superpowers visual companion) - never ship
 .superpowers/
+
+#explicaction
+.ai-job-search-cuba-guia.pdf
