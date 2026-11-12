@@ -25,6 +25,7 @@ Este repositorio es un fork y una modificación adaptada del proyecto original [
 Se han integrado habilidades nativas de búsqueda para portales y bolsas de empleo cubanas:
 - **BuscoPincha** (`buscopincha-search`): Integración con la plataforma cubana de empleos y servicios.
 - **CuCoders / Cuban Dev Jobs** (`cubadevjobs-search`): Extracción de ofertas técnicas y de desarrollo de software en Cuba a través de CuCoders y comunidades de desarrolladores locales.
+- **Himalayas** (`himalayas-search`): Búsqueda de empleos 100% remotos a nivel mundial compatibles con Cuba (filtrando estrictamente ofertas mundiales / sin restricciones de país, excluyendo requisitos de residencia fuera de Cuba).
 
 Conserva todo el potente flujo de trabajo automatizado de IA (`/scrape`, `/apply`, `/upskill`, `/interview`) adaptado para encontrar y postularse a oportunidades desde Cuba.
 
@@ -74,7 +75,7 @@ cd ai-job-search
 PowerShell:
 
 ```powershell
-$tools = @("buscopincha-search", "cubadevjobs-search", "linkedin-search", "freehire-search")
+$tools = @("buscopincha-search", "cubadevjobs-search", "linkedin-search", "freehire-search", "himalayas-search")
 foreach ($tool in $tools) {
   Set-Location ".agents/skills/$tool/cli"
   bun install
@@ -85,12 +86,12 @@ foreach ($tool in $tools) {
 Bash / zsh / Git Bash:
 
 ```bash
-for tool in buscopincha-search cubadevjobs-search linkedin-search freehire-search; do
+for tool in buscopincha-search cubadevjobs-search linkedin-search freehire-search himalayas-search; do
   cd .agents/skills/$tool/cli && bun install && cd ../../../..
 done
 ```
 
-Para `linkedin-search`, `freehire-search`, `buscopincha-search` y `cubadevjobs-search`, la instalación es opcional: todos tienen cero dependencias en tiempo de ejecución y se ejecutan con `bun` puro; `bun install` solo descarga los tipos de desarrollo de TypeScript.
+Para `linkedin-search`, `freehire-search`, `buscopincha-search`, `cubadevjobs-search` y `himalayas-search`, la instalación es opcional: todos tienen cero dependencias en tiempo de ejecución y se ejecutan con `bun` puro; `bun install` solo descarga los tipos de desarrollo de TypeScript.
 
 ### 3. Configura tu perfil
 
@@ -189,7 +190,8 @@ ai-job-search/
 │   ├── buscopincha-search/            # BuscoPincha (Cuba)
 │   ├── cubadevjobs-search/            # Cuba Dev Jobs (Cuba / Remoto)
 │   ├── linkedin-search/               # Listados públicos de LinkedIn (agnóstico de país)
-│   └── freehire-search/               # Agregador de empleos tecnológicos freehire.me (multi-mercado, REST API)
+│   ├── freehire-search/               # Agregador de empleos tecnológicos freehire.me (multi-mercado, REST API)
+│   └── himalayas-search/              # Himalayas (Empleos 100% remotos globales compatibles con Cuba)
 ├── cv/
 │   └── main_example.tex               # Plantilla moderncv LaTeX
 ├── cover_letters/
@@ -307,6 +309,7 @@ Las herramientas CLI en `.agents/skills/` demuestran el patrón para construir u
 Para puntos de partida **agnósticos de país**, el repositorio incluye:
 - **`linkedin-search`** — construido sobre los puntos finales públicos y sin autenticación `jobs-guest` de LinkedIn. Agnóstico de campo, **cero dependencias en tiempo de ejecución** (se ejecuta solo con `bun`), y toma la ubicación de búsqueda como un indicador explícito, por lo que funciona para cualquier mercado desde el primer momento (`-l "La Habana, Cuba"`, `-l "Remote"`, etc.). Diseñado **únicamente para uso personal**. Consulta `.agents/skills/linkedin-search/SKILL.md`.
 - **`freehire-search`** — consulta la API REST pública del agregador [freehire.me](https://freehire.me) (JSON, sin clave API). Enfocado en tecnología (software, datos, ingeniería, DevOps, remoto), multi-mercado a través de indicadores de facetas (`--region`, `--country`, `--remote`), y **cero dependencias en tiempo de ejecución**. Consulta `.agents/skills/freehire-search/SKILL.md`.
+- **`himalayas-search`** — consulta la API JSON pública de [Himalayas](https://himalayas.app/jobs/api) para buscar empleos 100% remotos, aplicando un filtro estricto que solo incluye ofertas mundiales (Worldwide / Global / sin restricciones geográficas) compatibles con Cuba (excluyendo requisitos de residencia fuera del país). **Cero dependencias en tiempo de ejecución**. Consulta `.agents/skills/himalayas-search/SKILL.md`.
 
 Para **Cuba**, el repositorio incluye:
 - **`buscopincha-search`** — consulta la API pública JSON de la sección `/jobs` de [BuscoPincha](https://buscopincha.com), un directorio cubano de servicios con ofertas de empleo. Filtra localmente por texto, modalidad, contrato y precio; no hay fechas de publicación. **Cero dependencias en tiempo de ejecución**. Consulta `.agents/skills/buscopincha-search/SKILL.md`.
