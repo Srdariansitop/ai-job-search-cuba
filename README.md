@@ -25,6 +25,8 @@ Este repositorio es un fork y una modificación adaptada del proyecto original [
 Se han integrado habilidades nativas de búsqueda para portales y bolsas de empleo cubanas:
 - **BuscoPincha** (`buscopincha-search`): Integración con la plataforma cubana de empleos y servicios.
 - **CuCoders / Cuban Dev Jobs** (`cubadevjobs-search`): Extracción de ofertas técnicas y de desarrollo de software en Cuba a través de CuCoders y comunidades de desarrolladores locales.
+- **CubaJobs** (`cubajobs-net-search`): Extracción de ofertas de empleo locales y oportunidades remotas para profesionales en Cuba desde `cubajobs.net`.
+- **Cubisima Empleos** (`cubisima-search`): Búsqueda de clasificados de empleo en Cuba (sector estatal, empresas mixtas y particulares/MIPYMES) en todas las provincias.
 - **Himalayas** (`himalayas-search`): Búsqueda de empleos 100% remotos a nivel mundial compatibles con Cuba (filtrando estrictamente ofertas mundiales / sin restricciones de país, excluyendo requisitos de residencia fuera de Cuba).
 
 Conserva todo el potente flujo de trabajo automatizado de IA (`/scrape`, `/apply`, `/upskill`, `/interview`) adaptado para encontrar y postularse a oportunidades desde Cuba.
@@ -75,7 +77,7 @@ cd ai-job-search
 PowerShell:
 
 ```powershell
-$tools = @("buscopincha-search", "cubadevjobs-search", "linkedin-search", "freehire-search", "himalayas-search")
+$tools = @("buscopincha-search", "cubadevjobs-search", "cubajobs-net-search", "cubisima-search", "linkedin-search", "freehire-search", "himalayas-search")
 foreach ($tool in $tools) {
   Set-Location ".agents/skills/$tool/cli"
   bun install
@@ -86,12 +88,12 @@ foreach ($tool in $tools) {
 Bash / zsh / Git Bash:
 
 ```bash
-for tool in buscopincha-search cubadevjobs-search linkedin-search freehire-search himalayas-search; do
+for tool in buscopincha-search cubadevjobs-search cubajobs-net-search cubisima-search linkedin-search freehire-search himalayas-search; do
   cd .agents/skills/$tool/cli && bun install && cd ../../../..
 done
 ```
 
-Para `linkedin-search`, `freehire-search`, `buscopincha-search`, `cubadevjobs-search` y `himalayas-search`, la instalación es opcional: todos tienen cero dependencias en tiempo de ejecución y se ejecutan con `bun` puro; `bun install` solo descarga los tipos de desarrollo de TypeScript.
+Para `linkedin-search`, `freehire-search`, `buscopincha-search`, `cubadevjobs-search`, `cubajobs-net-search`, `cubisima-search` y `himalayas-search`, la instalación es opcional: todos tienen cero dependencias en tiempo de ejecución y se ejecutan con `bun` puro; `bun install` solo descarga los tipos de desarrollo de TypeScript.
 
 ### 3. Configura tu perfil
 
@@ -189,6 +191,8 @@ ai-job-search/
 ├── .agents/skills/                    # Herramientas CLI de portales de empleo
 │   ├── buscopincha-search/            # BuscoPincha (Cuba)
 │   ├── cubadevjobs-search/            # Cuba Dev Jobs (Cuba / Remoto)
+│   ├── cubajobs-net-search/           # CubaJobs (Cuba / Remoto)
+│   ├── cubisima-search/               # Cubisima Empleos (Cuba)
 │   ├── linkedin-search/               # Listados públicos de LinkedIn (agnóstico de país)
 │   ├── freehire-search/               # Agregador de empleos tecnológicos freehire.me (multi-mercado, REST API)
 │   └── himalayas-search/              # Himalayas (Empleos 100% remotos globales compatibles con Cuba)
@@ -314,6 +318,8 @@ Para puntos de partida **agnósticos de país**, el repositorio incluye:
 Para **Cuba**, el repositorio incluye:
 - **`buscopincha-search`** — consulta la API pública JSON de la sección `/jobs` de [BuscoPincha](https://buscopincha.com), un directorio cubano de servicios con ofertas de empleo. Filtra localmente por texto, modalidad, contrato y precio; no hay fechas de publicación. **Cero dependencias en tiempo de ejecución**. Consulta `.agents/skills/buscopincha-search/SKILL.md`.
 - **`cubadevjobs-search`** — busca en [CuCoders Empleos](https://cucoders.dev/empleos/), el portal web detrás del canal de Telegram **Cuban Dev Jobs** (`@CuCodersJobs`). Parsea HTML y JSON-LD, filtra por texto, fecha y filtros de CuCoders, y obtiene el detalle con contactos de postulación. **Cero dependencias en tiempo de ejecución**. Consulta `.agents/skills/cubadevjobs-search/SKILL.md`.
+- **`cubajobs-net-search`** — busca ofertas laborales en Cuba y oportunidades remotas para profesionales cubanos en [CubaJobs](https://cubajobs.net). Parsea anuncios y páginas de detalle. **Cero dependencias en tiempo de ejecución**. Consulta `.agents/skills/cubajobs-net-search/SKILL.md`.
+- **`cubisima-search`** — busca clasificados de empleo en [Cubisima Empleos](https://www.cubisima.com/empleos/) para todas las provincias y sectores (estatal, empresas mixtas y MIPYMES). **Cero dependencias en tiempo de ejecución**. Consulta `.agents/skills/cubisima-search/SKILL.md`.
 
 ### Empezar de nuevo
 
